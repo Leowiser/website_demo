@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Site</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="/">Leon Weiser</a>
+      <div class="links">
+        <a href="#posts">Posts</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/Leowiser">GitHub</a>
+      </div>
+    </nav>
+    <section class="hero">
+      <h1>Leon Weiser</h1>
+      <p class="sub">Curious and fast learner, passionate about uncovering patterns in complex data and understanding the mechanisms that shape the world.</p>
+      <a class="cta" href="#posts">Explore</a>
+    </section>
+  </header>
+
+  <main>
+    <section id="posts" class="posts-grid">
+      <article class="card">
+        <a href="/posts/2025-08-23-hello-world.html">
+          <img src="/assets/img/sample.jpg" alt="" loading="lazy">
+          <div class="card-body">
+            <h2>Hello World</h2>
+            <p>My little personal website to show all my skills</p>
+            <span class="meta">Aug 23, 2025 • 3 min</span>
+          </div>
+        </a>
+      </article>
+      <!-- Duplicate <article> blocks for more posts -->
+    </section>
+
+    <section id="about" class="about">
+      <h2>About Me</h2>
+
+      <h3>Education</h3>
+      <ul>
+        <li><strong>MSc Statistics and Data Science</strong>, KU Leuven (09/2023 – 03/2025)  
+          • Majors: Statistical Modeling, Applied Data Science, Image Recognition  
+          • Thesis: Exploring Fully Unsupervised Autoencoders for Early Disease Detection
+        </li>
+        <li><strong>Exchange Semester</strong>, Tel Aviv University (09/2021 – 02/2022)</li>
+        <li><strong>BA Philosophy and Economics</strong>, University of Bayreuth (10/2019 – 04/2023)  
+          • Majors: Econometrics, Philosophy of Economics  
+          • Thesis: Do Social Connections Intensify Migration? A Subnational Analysis of EU Migration
+        </li>
+      </ul>
+
+      <h3>Experience</h3>
+      <ul>
+        <li><strong>Research Intern</strong>, Kiel Institute for the World Economy (06/2023 – 09/2023)  
+          • Worked on the Ukraine Support Tracker project  
+          • Publication: <a href="https://www.ifw-kiel.de/publications/the-ukraine-support-tracker-which-countries-help-ukraine-and-how-20852/">Trebesch et al. (2023)</a>
+        </li>
+        <li><strong>Student Assistant</strong>, University of Bayreuth (04/2022 – 04/2023)  
+          • Professorship for Philosophy, Computer Science and Artificial Intelligence
+        </li>
+        <li><strong>Tech Scout</strong>, German-Israeli Chamber of Commerce (01/2022 – 03/2022)  
+          • Identified emerging tech trends and opportunities in Israeli-German collaboration
+        </li>
+      </ul>
+
+      <h3>Skills</h3>
+      <ul>
+        <li><strong>Programming:</strong> Python (Pandas, NumPy, scikit-learn, PyTorch), R</li>
+        <li><strong>Tools & Platforms:</strong> Git, LaTeX, Microsoft Office</li>
+        <li><strong>Languages:</strong> German (Native), English (Fluent), French (Intermediate)</li>
+      </ul>
+
+      <h3>Achievements</h3>
+      <ul>
+        <li><strong>Paper in process:</strong> Modeling the potential of a Community First Responder system for cardiac arrests  
+            • Project idea and full code for routing simulations</li>
+        <li><strong>Datathon Winner:</strong> Leuven Statistics Research Centre  
+            • 1st place (2024, out of 35 teams)  
+            • 3rd place (2025, out of 37 teams)</li>
+      </ul>
+    </section>
+    <div class="tabcard" id="home-tabs">
+  <div class="tabcard-tabs" role="tablist" aria-label="Profile sections">
+    <button class="tab is-active" role="tab" aria-selected="true"
+            aria-controls="panel-about" id="tab-about" data-panel="about">About</button>
+    <button class="tab" role="tab" aria-selected="false"
+            aria-controls="panel-projects" id="tab-projects" data-panel="projects">Projects</button>
+    <button class="tab" role="tab" aria-selected="false"
+            aria-controls="panel-posts" id="tab-posts" data-panel="posts">Posts</button>
+  </div>
+
+  <section id="panel-about" class="tabcard-panel" role="tabpanel" aria-labelledby="tab-about">
+    <!-- your bullet-point About content goes here -->
+    <h3>About Me</h3>
+    <ul>
+      <li><strong>MSc Statistics & Data Science</strong>, KU Leuven (2023–2025)</li>
+      <li>Research: unsupervised autoencoders for early disease detection</li>
+      <li>Skills: Python (Pandas, NumPy, scikit-learn, PyTorch), R; Git; LaTeX</li>
+    </ul>
+  </section>
+
+  <section id="panel-projects" class="tabcard-panel" role="tabpanel" aria-labelledby="tab-projects" hidden>
+    <h3>Projects</h3>
+    <ul>
+      <li>Community First Responder routing simulation — paper in progress</li>
+      <li>Ukraine Support Tracker contribution (Kiel Institute)</li>
+    </ul>
+  </section>
+
+  <section id="panel-posts" class="tabcard-panel" role="tabpanel" aria-labelledby="tab-posts" hidden>
+    <h3>Latest Posts</h3>
+    <ul class="post-list">
+      <li><a href="/posts/2025-08-23-hello-world.html">Hello World</a></li>
+      <!-- Add more post links or render them dynamically if using Jekyll -->
+    </ul>
+  </section>
+</div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Your Name</p>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
