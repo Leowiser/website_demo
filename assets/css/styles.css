@@ -27,37 +27,39 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 .about{max-width:var(--max);margin:0 auto 4rem;padding:0 1rem}
 .site-footer{border-top:1px solid #1c1f27;padding:1.5rem;text-align:center;color:var(--muted)}
 
-/* Center the card and style */
-.tabcard{
-  max-width: 900px; margin: 3rem auto; background:#fff; color:#111;
-  border-radius:18px; box-shadow:0 18px 40px rgba(0,0,0,.35); overflow:hidden;
-}
 
-/* Tabs row */
+/* ---- Centered tab card ---- */
+.tabcard{
+  max-width: 900px;
+  margin: 3rem auto;
+  background: var(--panel, #111318);
+  color: var(--text, #e7e7e7);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.6);
+  overflow: hidden;
+}
 .tabcard-tabs{
-  display:flex; gap:.25rem; align-items:center; padding:.5rem;
-  background:linear-gradient(0deg, rgba(0,0,0,.08), rgba(0,0,0,.08));
-  backdrop-filter:saturate(120%) blur(2px);
+  display:flex; gap:.25rem; align-items:center; padding:.5rem  .5rem;
+  background: rgba(255,255,255,.06);
 }
 .tabcard .tab{
-  appearance:none; background:transparent; border:0; padding:1rem 1.25rem;
-  font-weight:700; letter-spacing:.02em; cursor:pointer; border-radius:12px;
-  color:#333; opacity:.75;
+  appearance:none; background:transparent; border:0;
+  padding:1rem 1.25rem; font-weight:700; letter-spacing:.02em;
+  cursor:pointer; border-radius:12px; color:inherit; opacity:.75;
 }
 .tabcard .tab:hover{ opacity:1 }
 .tabcard .tab.is-active{
-  background:#f2f4f7; opacity:1; box-shadow:inset 0 -2px 0 #222;
+  background:#1a1d24; opacity:1; box-shadow: inset 0 -2px 0 var(--accent, #59d);
 }
-
-/* Panels */
-.tabcard-panel{ padding:1.5rem 1.5rem 2rem; }
-.tabcard-panel h3{ margin-top:.5rem; margin-bottom:.75rem; font-size:1.25rem }
-.tabcard-panel ul{ margin:.5rem 0 0 1.25rem }
+.tabcard-panel{ padding:1.25rem 1.5rem 2rem }
+.tabcard-panel h3{ margin:.25rem 0 .5rem; font-size:1.2rem }
+.tabcard-panel ul{ margin:.25rem 0 0 1.25rem }
 .tabcard-panel li{ margin:.25rem 0 }
 
-/* Dark-site harmony (optional): keep card readable on dark bg) */
-@media (prefers-color-scheme: dark){
-  .tabcard{ background:#111318; color:#e7e7e7; box-shadow:0 18px 40px rgba(0,0,0,.6) }
-  .tabcard .tab{ color:#e7e7e7 }
-  .tabcard .tab.is-active{ background:#1a1d24; box-shadow:inset 0 -2px 0 #59d }
+/* Optional: lighter look for users in light mode */
+@media (prefers-color-scheme: light){
+  .tabcard{ background:#fff; color:#111; box-shadow:0 18px 40px rgba(0,0,0,.35) }
+  .tabcard .tab.is-active{ background:#f2f4f7; box-shadow: inset 0 -2px 0 #222 }
 }
+
+
