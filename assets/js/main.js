@@ -48,3 +48,23 @@
     if (id && root.querySelector(`#${id}`)) activate(id);
   });
 })();
+// Shrink hero on scroll
+(function(){
+  const hero = document.getElementById('hero');
+  if (!hero) return;
+
+  let ticking = false;
+  const trigger = () => {
+    // Start shrinking after a small scroll, feel free to tune 80
+    const shouldShrink = window.scrollY > 80;
+    hero.classList.toggle('is-shrink', shouldShrink);
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(trigger);
+      ticking = true;
+    }
+  }, { passive: true });
+})();

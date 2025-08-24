@@ -33,6 +33,51 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   /* ...your existing vars... */
   --card-max: 1100px;   /* ⬅️ set the width you want (try 1100–1200px) */
 }
+/* --- HERO: full viewport band, centered; shrinks & moves up on scroll --- */
+.hero{
+  position: sticky;           /* stays pinned at the top while shrinking */
+  top: 0;
+  z-index: 0;
+  min-height: 88vh;           /* big so you must scroll before tabs appear */
+  padding: clamp(2rem, 4vw, 4rem) 1rem;
+  display: grid;
+  place-items: center;        /* center title/sub/cta */
+  text-align: center;
+  background: #0b0c10;        /* fallback if image not found */
+  background-image: url("assets/img/hero.jpg"); /* your background image */
+  background-size: cover;
+  background-position: center;
+  border-radius: 0 0 32px 32px;          /* soft bottom corners */
+  transition: min-height .35s ease, padding .35s ease, filter .35s ease, transform .35s ease;
+  overflow: hidden;
+}
+.hero::before{                 /* subtle dark overlay for readability */
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.25), rgba(0,0,0,.55));
+  pointer-events:none;
+}
+.hero .hero-title{ 
+  font-size: clamp(2.5rem, 9vw, 5.5rem);
+  line-height: 1.05;
+  margin: 0 0 .5rem;
+}
+.hero .sub{ 
+  max-width: 70ch; 
+  margin: 0 auto 1.25rem; 
+  color: var(--muted, #a7a7a7);
+}
+.hero .cta{ margin-top:.5rem }
+
+/* When scrolled: shrink the hero and lift content upward */
+.hero.is-shrink{
+  min-height: 34vh;                        /* smaller */
+  padding: 1rem;                            /* tighter */
+  transform: translateY(-6vh);              /* move up a bit */
+  filter: saturate(.9) brightness(.95);
+}
+.hero.is-shrink .hero-title{ font-size: clamp(2rem, 6vw, 3rem) }
+
 
 /* update the existing rule */
 .tabcard{
