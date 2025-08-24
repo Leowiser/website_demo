@@ -30,60 +30,45 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 
 /* ---- Centered tab card ---- */
 :root{
-  /* ...your existing vars... */
-  --card-max: 1100px;   /* ⬅️ set the width you want (try 1100–1200px) */
+  --banner-h: 64px;            /* banner height when shrunk */
 }
-/* --- HERO: full viewport band, centered; shrinks & moves up on scroll --- */
+
+/* HERO (unchanged from yours except we’ll convert shrink → banner) */
 .hero{
-  position: sticky;           /* stays pinned at the top while shrinking */
-  top: 0;
-  z-index: 0;
-  min-height: 96vh;           /* big so you must scroll before tabs appear */
-  padding: clamp(2rem, 4vw, 4rem) 1rem;
-  display: grid;
-  place-items: center;        /* center title/sub/cta */
-  text-align: center;
-  background: #0b0c10;        /* fallback if image not found */
-  background-image: url("assets/img/hero.jpg"); /* your background image */
-  background-size: cover;
-  background-position: center;
-  border-radius: 0 0 32px 32px;          /* soft bottom corners */
-  transition: min-height .35s ease, padding .35s ease, filter .35s ease, transform .35s ease;
-  overflow: hidden;
+  position: sticky;
+  top: 0;                      /* pin to top of viewport */
+  z-index: 30;                 /* keep above content */
+  min-height: 96vh;            /* (optional) taller initial hero */
+  /* ...your existing rules (bg image, overlay, etc.) ... */
 }
-.hero::before{                 /* subtle dark overlay for readability */
-  content:"";
-  position:absolute; inset:0;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,.25), rgba(0,0,0,.55));
-  pointer-events:none;
-}
-.hero .hero-title{ 
-  font-size: clamp(2.5rem, 9vw, 5.5rem);
-  line-height: 1.05;
-  margin: 0 0 .5rem;
-}
-.hero .sub{ 
-  max-width: 70ch; 
-  margin: 0 auto 1.25rem; 
-  color: var(--muted, #a7a7a7);
-}
-.hero .cta{ margin-top:.5rem }
 
-/* When scrolled: shrink the hero and lift content upward */
+/* SHRUNK STATE = BANNER */
 .hero.is-shrink{
-  min-height: 22vh;                        /* smaller */
-  padding: .5rem 1rem;                            /* tighter */
-  transform: translateY(-14vh);              /* move up a bit */
-  filter: saturate(.9) brightness(.95);
+  height: var(--banner-h);     /* fixed banner height */
+  min-height: var(--banner-h);
+  padding: 0 .75rem;
+  transform: none;             /* no upward translate */
+  border-radius: 0 0 12px 12px;
+  background-position: center top;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  filter: none;
+  display: flex;               /* lay out title nicely in a row */
+  align-items: center;
+  justify-content: center;     /* or 'flex-start' if you want it left-aligned */
+  gap: .75rem;
 }
-.hero.is-shrink .hero-title{ font-size: clamp(1.5rem, 4.5vw, 2.25rem) }
 
-/* Optional: hide the subtitle when collapsed (cleaner, more compact) */
-.hero.is-shrink .sub{
-  opacity: 0;
-  height: 0;
+/* Title scales down in banner */
+.hero.is-shrink .hero-title{
+  font-size: clamp(1.1rem, 2.6vw, 1.6rem);
   margin: 0;
-  overflow: hidden;
+  line-height: 1.1;
+}
+
+/* Hide extras in banner */
+.hero.is-shrink .sub,
+.hero.is-shrink .cta{
+  display: none;
 }
 
 /* update the existing rule */
