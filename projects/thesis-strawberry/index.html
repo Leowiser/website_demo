@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thesis Summary · Exploring Unsupervised Autoencoders for Early Disease Detection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0c10; --text:#e8e8ea; --muted:#a7a7ad; --panel:#14161c; --accent:#59d;
+      --max: 900px;
+    }
+    html,body{margin:0}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    .wrap{max-width:var(--max);margin:2.5rem auto;padding:0 1rem}
+    header{display:grid;gap:.5rem;margin-bottom:1.25rem}
+    h1{font-size:clamp(1.5rem,3.5vw,2.2rem);line-height:1.1;margin:0}
+    .lead{color:var(--muted);margin:0}
+    .panel{background:var(--panel);border-radius:16px;padding:1rem 1.2rem}
+    .grid{display:grid;gap:1rem}
+    @media(min-width:800px){ .grid{grid-template-columns:1.1fr .9fr} }
+    h2{font-size:1.1rem;margin:.25rem 0 .5rem}
+    ul{margin:.25rem 0 0 1.1rem}
+    li{margin:.25rem 0}
+    .kbd{font-weight:600}
+    .muted{color:var(--muted)}
+    figure{margin:0;background:#0f1117;border:1px solid #1c1f27;border-radius:12px;overflow:hidden}
+    figure img{width:100%;height:220px;object-fit:cover;display:block}
+    figcaption{font-size:.9rem;color:var(--muted);padding:.5rem .75rem}
+    .cta{display:inline-block;margin-top:.75rem;text-decoration:none;color:#000;background:var(--accent);padding:.6rem .9rem;border-radius:999px;font-weight:700}
+    footer{margin-top:1rem;font-size:.9rem;color:var(--muted)}
+    .source{display:block;margin-top:.5rem;font-size:.85rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Exploring Fully Unsupervised Autoencoders for Early Disease Detection</h1>
+      <p class="lead">Hyperspectral imaging of strawberry leaves to detect <em>P. cactorum</em>—no labels, anomaly detection via reconstruction error.</p>
+    </header>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Core Idea</h2>
+        <ul>
+          <li>Use hyperspectral images (≈398–1000&nbsp;nm) of strawberry leaves; train only on healthy leaves; flag anomalies via reconstruction errors from convolutional autoencoders (2D &amp; 3D). :contentReference[oaicite:0]{index=0}</li>
+        </ul>
+
+        <h2>Data &amp; Prep</h2>
+        <ul>
+          <li>20 plants imaged daily (~2 weeks), cropped to leaves; 388 samples (321 healthy / 67 infected). :contentReference[oaicite:1]{index=1}</li>
+          <li>Preprocessing: mask background; remove noisy bands (&lt;430&nbsp;nm); SNV normalization; PCA-guided band selection to 17 wavelengths (also compared with full spectrum). :contentReference[oaicite:2]{index=2}</li>
+        </ul>
+
+        <h2>Method (short)</h2>
+        <ul>
+          <li>Train CAEs on healthy leaves; evaluate infection by image-level reconstruction error with thresholds; metrics: ROC-AUC, PR-AUC, FPR@95%TPR. :contentReference[oaicite:3]{index=3}</li>
+          <li>Error-mitigation steps: remove edge artifacts, apply masks post-recon, prefer SNV to reduce illumination scatter. :contentReference[oaicite:4]{index=4}</li>
+          <li>Experimented with alternative error metrics (e.g., per-band extreme-pixel rate; vein-focused errors; latent-space similarity). :contentReference[oaicite:5]{index=5}</li>
+        </ul>
+
+        <h2>Key Findings</h2>
+        <ul>
+          <li>Fully unsupervised CAEs struggled to cleanly separate healthy vs infected leaves—especially in early stages; best conventional setup reached modest ROC-AUC, and 3D did not clearly outperform 2D. :contentReference[oaicite:6]{index=6}</li>
+          <li>“Extreme-pixel” per-band metric showed most promise for day-1 infections (lowest FPR@95%TPR among tested metrics), but overall accuracy remained limited. :contentReference[oaicite:7]{index=7}</li>
+          <li>Reduced 17-band sets performed comparably to the full spectrum → careful band selection can cut complexity without large losses. :contentReference[oaicite:8]{index=8}</li>
+        </ul>
+
+        <h2>Takeaways</h2>
+        <ul>
+          <li>Symptoms of <em>P. cactorum</em> resemble benign variation (e.g., drought stress), making purely unsupervised detection intrinsically hard on this dataset. :contentReference[oaicite:9]{index=9}</li>
+          <li>Pipeline + preprocessing + error-metric ideas form a reusable baseline for future semi-supervised or hybrid approaches. :contentReference[oaicite:10]{index=10}</li>
+        </ul>
+
+        <a class="cta" href="../../Master_Thesis-13.pdf">Read full thesis (PDF)</a>
+        <small class="source">Summary based on the authors’ master’s thesis. :contentReference[oaicite:11]{index=11}</small>
+      </section>
+
+      <aside class="panel">
+        <figure>
+          <img src="../../assets/img/thesis/hero-hsi.jpg" alt="Hyperspectral leaf example">
+          <figcaption>Slot for a hyperspectral leaf image (false-color or RGB).</figcaption>
+        </figure>
+        <figure style="margin-top:1rem">
+          <img src="../../assets/img/thesis/pca-bands.jpg" alt="Selected wavelengths illustration">
+          <figcaption>Slot for PCA-guided band selection / spectra plot.</figcaption>
+        </figure>
+        <p class="muted" style="margin-top:.75rem">
+          Tip: export two figures from your thesis—(1) hyperspectral setup or leaf cube, (2) PC loadings / selected bands—and drop them into <code>assets/img/thesis/</code> with the names above.
+        </p>
+      </aside>
+    </div>
+
+    <footer>
+      © <span id="year"></span> Leon Weiser • KU Leuven
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
