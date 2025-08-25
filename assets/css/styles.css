@@ -154,3 +154,42 @@ img.fit-20 {
   object-fit: contain; /* preserves proportion, letterboxes if needed */
   display: block; margin: 0 auto;
 }
+
+/* Row for multiple figures: goes in one line, wraps when needed */
+.fig-row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;                 /* space between figure boxes */
+  align-items: flex-start;
+  justify-content: flex-start; /* keep left-aligned */
+}
+
+/* Figure box that hugs its image (not full width) */
+figure.figure-snug{
+  display: inline-flex;        /* shrink to content width */
+  flex-direction: column;
+  align-items: center;         /* center only inside the small box */
+  padding: .5rem;              /* little cushion around the image */
+  margin: 0;                   /* no auto-centering */
+  background: #0f1117;
+  border: 1px solid #1c1f27;
+  border-radius: 12px;
+}
+
+/* Override your generic figure img centering just for snug figures */
+figure.figure-snug img{ margin: 0; }
+
+/* Your tiny thumbnail size (keeps proportions; no crop) */
+img.thumb-20{
+  width: 20px;                 /* or 32/40/80 if you prefer bigger */
+  height: 20px;
+  object-fit: contain;         /* keep aspect, letterbox if needed */
+  display: block;
+}
+
+figure.figure-snug figcaption{
+  text-align: center;
+  margin-top: .4rem;
+  font-size: .85rem;
+  color: var(--muted);
+}
