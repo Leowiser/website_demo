@@ -9,10 +9,58 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 .links a{color:var(--muted);text-decoration:none;margin-left:1rem}
 .links a:hover{color:var(--text)}
 
-.hero{max-width:var(--max);margin:2rem auto 3rem;padding:3rem 1rem;text-align:center}
-.hero h1{font-size:clamp(2rem,6vw,4rem);line-height:1.1;margin:.25em 0}
-.sub{color:var(--muted);max-width:60ch;margin:0 auto 1.5rem}
-.cta{display:inline-block;background:var(--accent);color:#fff;padding:.8rem 1.2rem;border-radius:999px;text-decoration:none;font-weight:600}
+.hero{
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  min-height: 70vh;
+
+  /* your existing spacing */
+  max-width: var(--max);
+  margin: 2rem auto 3rem;
+  padding: 3rem 1rem;
+  text-align: center;
+
+  /* NEW layout */
+  display: grid;
+  grid-template-columns: 1fr minmax(32ch, 60ch) auto; /* left | center text | right image */
+  grid-template-rows: auto auto;                      /* row1 title/sub/cta, row2 subtwo+portrait */
+  align-items: center;
+  column-gap: clamp(1rem, 4vw, 3rem);
+}
+
+/* place the centered text in the middle column, row 1 */
+.hero h1,
+.hero .sub,
+.hero .cta{
+  grid-column: 2;
+  grid-row: 1;
+}
+.hero h1{ font-size: clamp(2rem, 6vw, 4rem); line-height: 1.1; margin: .25em 0; }
+.sub{ color: var(--muted); max-width: 60ch; margin: 0 auto 1rem; }
+
+/* NEW: subtwo goes below the sub, left column */
+.subtwo{
+  color: var(--muted);
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: end;     /* nudge toward center */
+  text-align: right;
+  margin: .25rem 0 0;
+}
+
+/* NEW: portrait sits on the right, same row as subtwo */
+.hero-portrait{
+  grid-column: 3;
+  grid-row: 2;
+  width: clamp(120px, 18vw, 220px);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,.7);
+  box-shadow: 0 12px 32px rgba(0,0,0,.35);
+  pointer-events: none;
+}
 
 .posts-grid{max-width:var(--max);margin:0 auto;display:grid;gap:1.25rem;padding:0 1rem 3rem;
   grid-template-columns:repeat(auto-fill,minmax(280px,1fr));}
@@ -33,61 +81,45 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   --banner-h: 64px;            /* banner height when shrunk */
 }
 
-/* HERO (unchanged from yours except we’ll convert shrink → banner) */
-.hero{
-  position: sticky;
-  top: 0;                      /* pin to top of viewport */
-  z-index: 30;                 /* keep above content */
-  min-height: 70vh;            /* (optional) taller initial hero */
-  /* ...your existing rules (bg image, overlay, etc.) ... */
-}
+
 
 /* SHRUNK STATE = BANNER */
 .hero.is-shrink{
-  height: var(--banner-h);     /* fixed banner height */
+  height: var(--banner-h);
   min-height: var(--banner-h);
   padding: 0 .75rem;
-  transform: none;             /* no upward translate */
+  transform: none;
   border-radius: 0 0 12px 12px;
   background-position: center top;
   box-shadow: 0 8px 20px rgba(0,0,0,.25);
   filter: none;
-  display: flex;               /* lay out title nicely in a row */
+
+  /* switch layout from grid → flex for the banner row */
+  display: flex;
   align-items: center;
-  justify-content: center;     /* or 'flex-start' if you want it left-aligned */
+  justify-content: center;
   gap: .75rem;
 }
 
-/* Title scales down in banner */
-.hero.is-shrink .hero-title{
-  font-size: clamp(1.1rem, 2.6vw, 1.6rem);
-  margin: 0;
-  line-height: 1.1;
-}
-
-/* Hide extras in banner */
+.hero.is-shrink .hero-title{ font-size: clamp(1.1rem, 2.6vw, 1.6rem); margin: 0; line-height: 1.1; }
 .hero.is-shrink .sub,
-.hero.is-shrink .cta{
-  display: none;
-}
-.hero-portrait{
-  position: absolute;
-  right: clamp(1rem, 6vw, 5rem);      /* distance from left edge */
-  top: 60%;                          /* a bit lower than center */
-  transform: translateY(-40%);       /* fine-tune vertical offset */
-  width: clamp(120px, 18vw, 220px);  /* responsive size */
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(255,255,255,.7);
-  box-shadow: 0 12px 32px rgba(0,0,0,.35);
-  pointer-events: none;              /* avoids covering links */
+.hero.is-shrink .subtwo,
+.hero.is-shrink .cta,
+.hero.is-shrink .hero-portrait{ display: none; }
+
+
+
+
+@media (max-width: 720px){
+  .hero{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .hero h1, .hero .sub, .hero .cta{ grid-column: 1; grid-row: auto; }
+  .subtwo{ grid-column: 1; grid-row: auto; justify-self: center; text-align: center; margin-top: .5rem; }
+  .hero-portrait{ grid-column: 1; grid-row: auto; margin-top: 1rem; }
 }
 
-/* Hide the portrait on small screens if it crowds the text */
-@media (max-width: 700px){
-  .hero-portrait{ display: none; }
-}
 
 /* update the existing rule */
 .tabcard{
