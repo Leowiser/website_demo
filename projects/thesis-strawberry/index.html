@@ -5,14 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thesis Summary · Exploring Unsupervised Autoencoders for Early Disease Detection</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
   <style>
-    :root{
-      /* bumped contrast for clearer text */
-      --bg:#0b0c10; --text:#f2f4f7; --muted:#b6bac5; --panel:#171a1f; --accent:#59d;
-    }
-    html,body{margin:0}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-
     /* FULL-WIDTH LAYOUT */
     .wrap{width:100%; max-width:none; margin:0; padding:0}
     header{display:grid;gap:.5rem; padding:clamp(1rem,3vw,2rem); text-align: center;}
@@ -68,14 +62,7 @@
     figcaption{font-size:.9rem;color:var(--muted);padding:.5rem .75rem}
 
     /* Small image utility: cap to ~80×80, keep aspect ratio, no crop */
-    img.thumb-20{
-      width:auto;
-      height:auto;
-      max-width:80px;    /* change to 60px/100px as you like */
-      max-height:80px;
-      display:block;
-      margin:0 auto;
-    }
+    
 
     .cta{
       display:inline-block;margin-top:.75rem;text-decoration:none;color:#000;
