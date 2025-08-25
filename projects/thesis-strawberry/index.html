@@ -15,7 +15,7 @@
 
     /* FULL-WIDTH LAYOUT */
     .wrap{width:100%; max-width:none; margin:0; padding:0}
-    header{display:grid;gap:.5rem; padding:clamp(1rem,3vw,2rem)}
+    header{display:grid;gap:.5rem; padding:clamp(1rem,3vw,2rem); text-align: center;}
     h1{font-size:clamp(1.5rem,3.5vw,2.2rem);line-height:1.1;margin:0}
     .lead{color:var(--muted);margin:0}
 
@@ -86,13 +86,24 @@
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Exploring Fully Unsupervised Autoencoders for Early Disease Detection</h1>
+<header class="site-header">
+<nav class="nav">
+  <a class="brand" href="./">Leon Weiser</a>
+  <div class="links">
+    <a href="/">About</a>
+    <a href="#panel-projects">Projects</a>
+    <a href="https://github.com/Leowiser">GitHub</a>
+  </div>
+</nav>
+
+  <!-- hero gets an id for JS -->
+<section class="wrap" id="wrap">
+    <h1>Exploring Fully Unsupervised Autoencoders for Early Disease Detection</h1>
       <p class="lead">Hyperspectral imaging of strawberry leaves to detect <em>P. cactorum</em>—no labels, 
         anomaly detection via reconstruction error.</p>
       <p class="lead">Code found on GitHub here: <a href="https://github.com/Leowiser/Thesis_Strawberries">https://github.com/Leowiser/Thesis_Strawberries</a>.</p>
-    </header>
+</section>
+</header>
 
     <div class="grid">
       <section class="panel">
