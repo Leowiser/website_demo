@@ -143,8 +143,14 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 img.fit-20 {
   width: auto;
   height: auto;
-  max-width: 20px;
-  max-height: 20px;
+  max-width: 200px;
+  max-height: 200px;
   display: block;      /* optional: centers with margin:0 auto */
   margin: 0 auto;      /* remove if you don't want centering */
+}
+
+.thumb-20 {
+  width: 20px; height: 20px;
+  object-fit: contain; /* preserves proportion, letterboxes if needed */
+  display: block; margin: 0 auto;
 }
