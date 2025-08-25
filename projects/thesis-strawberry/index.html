@@ -7,25 +7,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0c10; --text:#e8e8ea; --muted:#a7a7ad; --panel:#14161c; --accent:#59d;
+      /* bumped contrast for clearer text */
+      --bg:#0b0c10; --text:#f2f4f7; --muted:#b6bac5; --panel:#171a1f; --accent:#59d;
     }
     html,body{margin:0}
     body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 
     /* FULL-WIDTH LAYOUT */
-    .wrap{width:100%; max-width:none; margin:0; padding:3rem}
+    .wrap{width:100%; max-width:none; margin:0; padding:0}
     header{display:grid;gap:.5rem; padding:clamp(1rem,3vw,2rem)}
     h1{font-size:clamp(1.5rem,3.5vw,2.2rem);line-height:1.1;margin:0}
     .lead{color:var(--muted);margin:0}
 
-    /* Panels go edge-to-edge with comfy padding */
+    /* Main content box: more side padding + clearer box styling */
     .panel{
       background:var(--panel);
-      border-radius:0;                 /* full-bleed look */
-      padding:clamp(1rem,3vw,2rem);
+      border:1px solid #262a35;
+      border-radius:16px;
+      padding:clamp(1.5rem,6vw,4rem);   /* ← more left/right padding */
+      box-shadow:0 10px 28px rgba(0,0,0,.35);
     }
 
-    /* If you re-enable the aside later, grid still works full-width */
+    /* Grid stays full-width */
     .grid{display:grid;gap:clamp(.75rem,2vw,1.25rem)}
     @media(min-width:1000px){ .grid{grid-template-columns:1.5fr 1fr} }
 
@@ -35,7 +38,7 @@
     .kbd{font-weight:600}
     .muted{color:var(--muted)}
 
-    /* FIGURES ADAPT TO IMAGE SIZE (no fixed height, no crop) */
+    /* Figures adapt to image size (no cropping) */
     figure{
       margin:clamp(.75rem,2vw,1rem) 0;
       background:#0f1117;
@@ -43,13 +46,25 @@
       border-radius:12px;
       overflow:hidden;
     }
+    /* stop forcing full width, so small utilities can take effect */
     figure img{
       display:block;
-      width:100%;
-      height:auto;          /* keep natural aspect ratio */
+      width:auto;
+      height:auto;
       max-width:100%;
+      margin:0 auto;     /* center inside figure */
     }
     figcaption{font-size:.9rem;color:var(--muted);padding:.5rem .75rem}
+
+    /* Small image utility: cap to ~80×80, keep aspect ratio, no crop */
+    img.fit-20{
+      width:auto;
+      height:auto;
+      max-width:80px;    /* change to 60px/100px as you like */
+      max-height:80px;
+      display:block;
+      margin:0 auto;
+    }
 
     .cta{
       display:inline-block;margin-top:.75rem;text-decoration:none;color:#000;
@@ -75,14 +90,13 @@
           <li>Use hyperspectral images (≈398–1000&nbsp;nm) of strawberry leaves; train only on healthy leaves; flag anomalies via reconstruction errors from convolutional autoencoders (2D &amp; 3D).</li>
         </ul>
         <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/Cropped_preprocess.png" alt="Hyperspectral plant to leaf example">
+          <img class="fit-20" src="../../assets/img/thesis/Cropped_preprocess.png" alt="Hyperspectral plant to leaf example">
           <figcaption>Cropped leaves from plant image.</figcaption>
         </figure>
         <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/HSI_example.png" alt="Hyperspectral image and spectra">
+          <img class="fit-20" src="../../assets/img/thesis/HSI_example.png" alt="Hyperspectral image and spectra">
           <figcaption>Example of hyperspectral leaf image and its spectra.</figcaption>
         </figure>
-        
 
         <h2>Data &amp; Preprocessing</h2>
         <ul>
@@ -90,11 +104,11 @@
           <li>Preprocessing: mask background; remove noisy bands (&lt;430&nbsp;nm); SNV normalization; PCA-guided band selection to 17 wavelengths (also compared with full spectrum).</li>
         </ul>
         <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/Mask_preprocess.png" alt="Masked image example">
+          <img class="fit-20" src="../../assets/img/thesis/Mask_preprocess.png" alt="Masked image example">
           <figcaption>Masked image.</figcaption>
         </figure>
         <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/PCA_bandselect.png" alt="Hyperspectral plant to leaf example">
+          <img class="fit-20" src="../../assets/img/thesis/PCA_bandselect.png" alt="Hyperspectral plant to leaf example">
           <figcaption>Selected bands based on PCA loadings and spectral data exploration.</figcaption>
         </figure>
 
@@ -105,27 +119,26 @@
           <li>Experimented with alternative error metrics (e.g., per-band extreme-pixel rate; vein-focused errors; latent-space similarity).</li>
         </ul>
         <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/Vis_3DCNN.png" alt="Vis of 3DCAE">
-          <figcaption>Visualization of 3D Convoluational Autoencoder.</figcaption>
+          <img class="fit-20" src="../../assets/img/thesis/Vis_3DCNN.png" alt="Vis of 3DCAE">
+          <figcaption>Visualization of 3D Convolutional Autoencoder.</figcaption>
         </figure>
         <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/Recon_Error_Max.png" alt="Reconstruction error">
+          <img class="fit-20" src="../../assets/img/thesis/Recon_Error_Max.png" alt="Reconstruction error">
           <figcaption>Examplary leaf with reconstruction and mean absolute reconstruction error.</figcaption>
         </figure>
 
         <h4>Alternative Error Metrics</h4>
         <ul>
-          <li>Latent space similarity based on <a href="https://link.springer.com/article/10.1186/s13362-023-00133-6"> Benfenati et al. (2023)</a>.</li>
+          <li>Latent space similarity based on <a href="https://link.springer.com/article/10.1186/s13362-023-00133-6">Benfenati et al. (2023)</a>.</li>
           <li>Per-band extreme-error pixel: Own idea, using the rate of all pixels with error values above the 99&percnt; quantile of the validation set (only healthy leaves) over all pixels to identify diseases.</li>
-          <li>Vein-focused errors: Original idea based on the disease spread in the plant, as it often progresses through the veins. Veins and proximate areas are idenfied
-            using the highest eigenvalues. The mean absolute error of the found area is taken.</li>
+          <li>Vein-focused errors: Original idea based on the disease spread in the plant, as it often progresses through the veins. Veins and proximate areas are identified using the highest eigenvalues. The mean absolute error of the found area is taken.</li>
         </ul>
         <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/Pixel_errors_99quant.png" alt="Extreme pixel error">
+          <img class="fit-20" src="../../assets/img/thesis/Pixel_errors_99quant.png" alt="Extreme pixel error">
           <figcaption>Extreme-error pixels of leaves at different stages of infection and different bands. Pixels with errors above 99&percnt; are coloured red.</figcaption>
         </figure>
         <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/Vein_Error.png" alt="Vein error">
+          <img class="fit-20" src="../../assets/img/thesis/Vein_Error.png" alt="Vein error">
           <figcaption>Identified veins and the error in that area for different stages of infection.</figcaption>
         </figure>
 
@@ -145,19 +158,6 @@
         <a class="cta" href="../../Master_Thesis-13.pdf">Read full thesis (PDF)</a>
         <small class="source">Summary based on the authors’ master’s thesis.</small>
       </section>
-
-      <!-- If you want a right column later, uncomment this aside and add images.
-      <aside class="panel">
-        <figure>
-          <img src="../../assets/img/thesis/Cropped_preprocess.png" alt="Hyperspectral plant to leaf example">
-          <figcaption>Hyperspectral leaf image (false-color or RGB).</figcaption>
-        </figure>
-        <figure>
-          <img src="../../assets/img/thesis/PCA_bandselect.png" alt="Selected wavelengths illustration">
-          <figcaption>PCA-guided band selection / spectra plot.</figcaption>
-        </figure>
-      </aside>
-      -->
     </div>
 
     <footer>
