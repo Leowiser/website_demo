@@ -72,7 +72,7 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 }
 .hero-portrait{
   position: absolute;
-  left: clamp(1rem, 6vw, 5rem);      /* distance from left edge */
+  right: clamp(1rem, 6vw, 5rem);      /* distance from left edge */
   top: 60%;                          /* a bit lower than center */
   transform: translateY(-40%);       /* fine-tune vertical offset */
   width: clamp(120px, 18vw, 220px);  /* responsive size */
