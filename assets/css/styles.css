@@ -187,3 +187,44 @@ figure.figure-snug figcaption{
   font-size: .85rem;
   color: var(--muted);
 }
+
+/* Optional: keep nav visible on scroll */
+.nav{
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(11,12,16,.75);
+  backdrop-filter: blur(6px);
+}
+
+/* New non-sticky hero that sits under the header */
+.page-hero{
+  position: relative;
+  max-width: var(--max);
+  margin: 1.25rem auto 2.5rem;
+  padding: clamp(1.5rem, 4vw, 3rem) 1rem;
+  text-align: center;
+
+  /* visual style (change image or remove if you want solid panel) */
+  background-image: url("assets/img/hero-alt.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+  overflow: hidden;
+  isolation: isolate; /* keeps overlay effects inside */
+}
+.page-hero::before{ /* subtle overlay for readability */
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.20), rgba(0,0,0,.45));
+  z-index: 0;
+}
+.page-hero__title{
+  position: relative; z-index: 1;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  line-height: 1.1; margin: 0 0 .5rem;
+}
+.page-hero__sub{
+  position: relative; z-index: 1;
+  max-width: 70ch; margin: 0 auto 1rem; color: var(--muted);
+}
+.page-hero .cta{ position: relative; z-index: 1; }
