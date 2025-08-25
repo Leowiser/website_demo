@@ -30,7 +30,18 @@
 
     /* Grid stays full-width */
     .grid{display:grid;gap:clamp(.75rem,2vw,1.25rem)}
-    @media(min-width:1000px){ .grid{grid-template-columns:1.5fr 1fr} }
+    /* 1) Use a single column (no empty right column) */
+    @media (min-width:1000px){
+      .grid{ grid-template-columns: minmax(0, 1fr); }
+    }
+
+    /* 2) Center the whole content box and cap its width */
+    .panel{
+      max-width: 1100px;           /* pick any cap you like */
+      margin-left: auto;
+      margin-right: auto;          /* centers the box */
+      /* keep your existing padding/border/shadow as-is */
+    }
 
     h2{font-size:1.1rem;margin:.25rem 0 .5rem}
     ul{margin:.25rem 0 0 1.1rem}
