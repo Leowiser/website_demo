@@ -219,12 +219,16 @@ figure.figure-snug figcaption{
   z-index: 0;
 }
 .page-hero__title{
-  position: relative; z-index: 1;
+  position: relative; 
+  left: 50px;
+  z-index: 1;
   font-size: clamp(2rem, 6vw, 3.2rem);
   line-height: 1.1; margin: 0 0 .5rem;
 }
 .page-hero__sub{
-  position: relative; z-index: 1;
+  position: relative; 
+  left: 50px;
+  z-index: 1;
   max-width: 70ch; margin: 0 auto 1rem; color: var(--muted);
 }
 .page-hero .cta{ position: relative; z-index: 1; }
