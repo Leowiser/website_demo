@@ -38,7 +38,7 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   position: sticky;
   top: 0;                      /* pin to top of viewport */
   z-index: 30;                 /* keep above content */
-  min-height: 96vh;            /* (optional) taller initial hero */
+  min-height: 70vh;            /* (optional) taller initial hero */
   /* ...your existing rules (bg image, overlay, etc.) ... */
 }
 

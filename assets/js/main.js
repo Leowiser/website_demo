@@ -56,7 +56,7 @@
   let ticking = false;
   const trigger = () => {
     // Start shrinking after a small scroll, feel free to tune 80
-    const shouldShrink = window.scrollY > 50;
+    const shouldShrink = window.scrollY > 70;
     hero.classList.toggle('is-shrink', shouldShrink);
     ticking = false;
   };
