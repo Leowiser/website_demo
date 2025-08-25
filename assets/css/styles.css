@@ -96,7 +96,7 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 .tabcard .tab.is-active{
   background:#1a1d24; opacity:1; box-shadow: inset 0 -2px 0 var(--accent, #59d);
 }
-.tabcard-panel{ padding:1.25rem 1.5rem 2rem }
+.tabcard-panel{ padding:3.25rem 3.5rem 3rem }
 .tabcard-panel h3{ margin:.25rem 0 .5rem; font-size:1.2rem }
 .tabcard-panel ul{ margin:.25rem 0 0 1.25rem }
 .tabcard-panel li{ margin:.25rem 0 }
@@ -234,3 +234,39 @@ figure.figure-snug figcaption{
   max-width: 70ch; margin: 0 auto 1rem; color: var(--muted);
 }
 .page-hero .cta{ position: relative; z-index: 1; }
+
+/* Section separator (horizontal line above each section) */
+.cv-section{
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255,255,255,.14); /* adjust color for light mode if needed */
+}
+.cv-section:first-child{ border-top: 0; } /* no line before the very first section */
+
+/* Table styling + vertical divider */
+table.cv{
+  width: 100%;
+  border-collapse: collapse;
+}
+.cv th, .cv td{
+  vertical-align: top;
+  padding: .25rem .75rem;
+}
+
+/* date column */
+.cv th:first-child, .cv td:first-child{
+  white-space: nowrap;
+  padding-right: 1rem;
+}
+
+/* spacer column becomes the vertical line */
+.cv th:nth-child(2), .cv td:nth-child(2){
+  width: 18px;                 /* space between date and content */
+  border-left: 2px solid rgba(255,255,255,.14);  /* <- the vertical line */
+  padding: 0;                  /* keep it visually slim */
+}
+
+/* content column */
+.cv th:nth-child(3), .cv td:nth-child(3){
+  padding-left: 1rem;
+}
