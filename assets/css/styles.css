@@ -140,11 +140,11 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 .tabcard{ position: relative; z-index: 0; }
 
 /* Utility: cap image to 40×40 without cropping, keep aspect ratio */
-img.fit-40 {
+img.fit-20 {
   width: auto;
   height: auto;
-  max-width: 40px;
-  max-height: 40px;
+  max-width: 20px;
+  max-height: 20px;
   display: block;      /* optional: centers with margin:0 auto */
   margin: 0 auto;      /* remove if you don't want centering */
 }
