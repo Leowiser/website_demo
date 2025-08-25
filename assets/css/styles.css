@@ -70,6 +70,24 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 .hero.is-shrink .cta{
   display: none;
 }
+.hero-portrait{
+  position: absolute;
+  left: clamp(1rem, 6vw, 5rem);      /* distance from left edge */
+  top: 60%;                          /* a bit lower than center */
+  transform: translateY(-40%);       /* fine-tune vertical offset */
+  width: clamp(120px, 18vw, 220px);  /* responsive size */
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,.7);
+  box-shadow: 0 12px 32px rgba(0,0,0,.35);
+  pointer-events: none;              /* avoids covering links */
+}
+
+/* Hide the portrait on small screens if it crowds the text */
+@media (max-width: 700px){
+  .hero-portrait{ display: none; }
+}
 
 /* update the existing rule */
 .tabcard{
