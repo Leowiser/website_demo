@@ -59,14 +59,16 @@
           <li>20 plants imaged daily (~2 weeks), cropped to leaves; 388 samples (321 healthy / 67 infected).</li>
           <li>Preprocessing: mask background; remove noisy bands (&lt;430&nbsp;nm); SNV normalization; PCA-guided band selection to 17 wavelengths (also compared with full spectrum).</li>
         </ul>
-        <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/Mask_preprocess.png" alt="Masked image example">
-          <figcaption>Masked image.</figcaption>
-        </figure>
-        <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/PCA_bandselect.png" alt="Hyperspectral plant to leaf example">
-          <figcaption>Selected bands based on PCA loadings and spectral data exploration.</figcaption>
-        </figure>
+        <div class="fig-row">
+          <figure class="figure-snug">
+            <img class="thumb-20" src="../../assets/img/thesis/Mask_preprocess.png" alt="Masked image example">
+            <figcaption>Masked image.</figcaption>
+          </figure>
+          <figure class="figure-snug">
+            <img class="thumb-20" src="../../assets/img/thesis/PCA_bandselect.png" alt="Hyperspectral plant to leaf example">
+            <figcaption>Selected bands based on PCA loadings and spectral data exploration.</figcaption>
+          </figure>
+        </div>
 
         <h2>Method</h2>
         <ul>
@@ -74,14 +76,16 @@
           <li>Error-mitigation steps: remove edge artifacts, apply masks post-recon, prefer SNV to reduce illumination scatter.</li>
           <li>Experimented with alternative error metrics (e.g., per-band extreme-pixel rate; vein-focused errors; latent-space similarity).</li>
         </ul>
-        <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/Vis_3DCNN.png" alt="Vis of 3DCAE">
-          <figcaption>Visualization of 3D Convolutional Autoencoder.</figcaption>
-        </figure>
-        <figure>
-          <img class="thumb-20" src="../../assets/img/thesis/Recon_Error_Max.png" alt="Reconstruction error">
-          <figcaption>Examplary leaf with reconstruction and mean absolute reconstruction error.</figcaption>
-        </figure>
+        <div class="fig-row">
+          <figure>
+            <img class="thumb-20" src="../../assets/img/thesis/Vis_3DCNN.png" alt="Vis of 3DCAE">
+            <figcaption>Visualization of 3D Convolutional Autoencoder.</figcaption>
+          </figure>
+          <figure>
+            <img class="thumb-20" src="../../assets/img/thesis/Recon_Error_Max.png" alt="Reconstruction error">
+            <figcaption>Examplary leaf with reconstruction and mean absolute reconstruction error.</figcaption>
+          </figure>
+        </div>
 
         <h4>Alternative Error Metrics</h4>
         <ul>
@@ -89,6 +93,7 @@
           <li>Per-band extreme-error pixel: Own idea, using the rate of all pixels with error values above the 99&percnt; quantile of the validation set (only healthy leaves) over all pixels to identify diseases.</li>
           <li>Vein-focused errors: Original idea based on the disease spread in the plant, as it often progresses through the veins. Veins and proximate areas are identified using the highest eigenvalues. The mean absolute error of the found area is taken.</li>
         </ul>
+        <div class="fig-row">
         <figure>
           <img class="thumb-20" src="../../assets/img/thesis/Pixel_errors_99quant.png" alt="Extreme pixel error">
           <figcaption>Extreme-error pixels of leaves at different stages of infection and different bands. Pixels with errors above 99&percnt; are coloured red.</figcaption>
@@ -97,6 +102,7 @@
           <img class="thumb-20" src="../../assets/img/thesis/Vein_Error.png" alt="Vein error">
           <figcaption>Identified veins and the error in that area for different stages of infection.</figcaption>
         </figure>
+        </div>
 
         <h2>Key Findings</h2>
         <ul>
