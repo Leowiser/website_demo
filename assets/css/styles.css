@@ -163,26 +163,29 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   .hero-portrait{ grid-column:1; grid-row:3; margin-top:1rem }
 }
 
-/* turn off sticky for this page's hero */
-.hero--static{
-  position: static;         /* not sticky */
+/* Make this hero behave like a normal block (not sticky) */
+.hero-static{
+  position: static;          /* turn off sticky */
   top: auto;
   min-height: auto;
 }
 
-/* ignore any JS-added shrink class */
-.hero--static.is-shrink{
+/* If your JS adds .is-shrink, ignore it for the static hero */
+.hero-static.is-shrink{
   height: auto;
   min-height: auto;
-  padding: 3rem 1rem;       /* your normal padding */
-  display: grid;            /* keep your grid layout */
+  padding: 3rem 1rem;        /* your normal padding */
+  display: grid;             /* keep the grid layout */
   box-shadow: none;
   border-radius: 0;
 }
 
-/* optional: if you also want the title/sub/ctas always visible as a block */
-.hero--static .hero-title{ /* keep your existing sizes */ }
-/* update the existing rule */
+/* Un-hide elements that the generic .hero.is-shrink hides */
+.hero-static.is-shrink .hero-title{ font-size: clamp(2rem, 6vw, 4rem); }
+.hero-static.is-shrink .sub,
+.hero-static.is-shrink .subtwo{ display: block; }
+.hero-static.is-shrink .ctas{ display: flex; }
+.hero-static.is-shrink .hero-portrait{ display: block; }
 
 .tabcard{
   max-width: var(--card-max);
