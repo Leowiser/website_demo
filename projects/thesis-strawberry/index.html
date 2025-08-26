@@ -6,71 +6,7 @@
   <title>Thesis Summary · Exploring Unsupervised Autoencoders for Early Disease Detection</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <style>
-    /* FULL-WIDTH LAYOUT */
-    .wrap{width:100%; max-width:none; margin:0; padding:0}
-    header{display:grid;gap:.5rem; padding:clamp(1rem,3vw,2rem); text-align: center;}
-    h1{font-size:clamp(1.5rem,3.5vw,2.2rem);line-height:1.1;margin:0}
-    .lead{color:var(--muted);margin:0}
 
-    /* Main content box: more side padding + clearer box styling */
-    .panel{
-      background:var(--panel);
-      border:1px solid #262a35;
-      border-radius:16px;
-      padding:clamp(1.5rem,6vw,4rem);   /* ← more left/right padding */
-      box-shadow:0 10px 28px rgba(0,0,0,.35);
-    }
-
-    /* Grid stays full-width */
-    .grid{display:grid;gap:clamp(.75rem,2vw,1.25rem)}
-    /* 1) Use a single column (no empty right column) */
-    @media (min-width:1000px){
-      .grid{ grid-template-columns: minmax(0, 1fr); }
-    }
-
-    /* 2) Center the whole content box and cap its width */
-    .panel{
-      max-width: 1100px;           /* pick any cap you like */
-      margin-left: auto;
-      margin-right: auto;          /* centers the box */
-      /* keep your existing padding/border/shadow as-is */
-    }
-
-    h2{font-size:1.1rem;margin:.25rem 0 .5rem}
-    ul{margin:.25rem 0 0 1.1rem}
-    li{margin:.25rem 0}
-    .kbd{font-weight:600}
-    .muted{color:var(--muted)}
-
-    /* Figures adapt to image size (no cropping) */
-    figure{
-      margin:clamp(.75rem,2vw,1rem) 0;
-      background:#0f1117;
-      border:1px solid #1c1f27;
-      border-radius:12px;
-      overflow:hidden;
-    }
-    /* stop forcing full width, so small utilities can take effect */
-    figure img{
-      display:block;
-      width:auto;
-      height:auto;
-      max-width:100%;
-      margin:0 auto;     /* center inside figure */
-    }
-    figcaption{font-size:.9rem;color:var(--muted);padding:.5rem .75rem}
-
-    /* Small image utility: cap to ~80×80, keep aspect ratio, no crop */
-    
-
-    .cta{
-      display:inline-block;margin-top:.75rem;text-decoration:none;color:#000;
-      background:var(--accent);padding:.6rem .9rem;border-radius:999px;font-weight:700
-    }
-    footer{padding:clamp(1rem,3vw,2rem);font-size:.9rem;color:var(--muted)}
-    .source{display:block;margin-top:.5rem;font-size:.85rem;color:var(--muted)}
-  </style>
 </head>
 <body>
 <header class="site-header">
