@@ -15,43 +15,50 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   z-index: 30;
   min-height: 70vh;
 
-  /* your existing spacing */
   max-width: var(--max);
   margin: 2rem auto 3rem;
   padding: 3rem 1rem;
-  text-align: center;
 
-  /* NEW layout */
   display: grid;
-  grid-template-columns: 1fr minmax(32ch, 60ch) auto; /* left | center text | right image */
-  grid-template-rows: auto auto;                      /* row1 title/sub/cta, row2 subtwo+portrait */
+  /* gutters | subtwo | portrait | gutter, so row-1 can center over both */
+  grid-template-columns: minmax(0,1fr) auto auto minmax(0,1fr);
+  grid-template-rows: auto auto;
   align-items: center;
-  column-gap: clamp(1rem, 4vw, 3rem);
+
+  /* smaller distance between subtwo and image */
+  column-gap: clamp(.5rem, 2vw, 1.1rem);
+  text-align: center;
 }
 
+/* Center stack (title + sub + CTAs) spanning both middle columns */
+.hero .text{
+  grid-column: 2 / span 2;     /* centered above subtwo+image */
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero h1{ font-size: clamp(2rem, 6vw, 4rem); line-height: 1.1; margin: .25em 0; }
+.sub{ color: var(--muted); max-width: 60ch; margin: 0 0 .9rem; }
+
 /* place the centered text in the middle column, row 1 */
-.hero h1,
-.hero .sub,
+
 .hero .cta{
   grid-column: 2;
   grid-row: 1;
 }
-.hero h1{ font-size: clamp(2rem, 6vw, 4rem); line-height: 1.1; margin: .25em 0; }
-.sub{ color: var(--muted); max-width: 60ch; margin: 0 auto 1rem; }
-
 /* NEW: subtwo goes below the sub, left column */
 .subtwo{
   color: var(--muted);
-  grid-column: 1;
+  grid-column: 2;              /* left of the image */
   grid-row: 2;
-  justify-self: end;     /* nudge toward center */
   text-align: right;
-  margin: .25rem 0 0;
+  margin: 0;                   /* keep it tight to reduce gap */
+  max-width: 36ch;
+  justify-self: end;
 }
-
-/* NEW: portrait sits on the right, same row as subtwo */
 .hero-portrait{
-  grid-column: 3;
+  grid-column: 3;              /* right cell */
   grid-row: 2;
   width: clamp(120px, 18vw, 220px);
   aspect-ratio: 1/1;
@@ -64,30 +71,45 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 /* CTA row */
 .ctas{
   display: flex;
-  gap: .75rem;
+  gap: clamp(.9rem, 1.4vw, 1.25rem);   /* a bit more space */
   justify-content: center;
-  flex-wrap: wrap;           /* wrap if space is tight */
-  margin-top: .5rem;
+  flex-wrap: wrap;
+  margin-top: .75rem;
 }
 
-/* your existing .cta already styles the solid one; add variants */
-.cta{ display:inline-block; background:var(--accent); color:#fff;
-      padding:.8rem 1.2rem; border-radius:999px; text-decoration:none; font-weight:600 }
+/* Base button */
+.cta{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .9rem 1.25rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.cta:hover{ transform: translateY(-1px); box-shadow: 0 10px 24px rgba(0,0,0,.35) }
 
+/* Variants */
 .cta.outline{
   background: transparent;
   color: var(--text);
   border: 1.5px solid var(--accent);
+  box-shadow: none;
 }
-
 .cta.ghost{
-  background: transparent;
+  background: rgba(255,255,255,.04);
   color: var(--text);
-  border: 1px solid rgba(255,255,255,.25);
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: none;
 }
 
-/* optional: make them equal width */
-.ctas .cta{ text-align:center; min-width: 9rem }
+/* Optional: equal widths */
+.ctas .cta{ min-width: 9rem; text-align:center }
+
 
 .posts-grid{max-width:var(--max);margin:0 auto;display:grid;gap:1.25rem;padding:0 1rem 3rem;
   grid-template-columns:repeat(auto-fill,minmax(280px,1fr));}
@@ -110,29 +132,21 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 
 
 
-/* SHRUNK STATE = BANNER */
+/* Shrunk banner keeps your behavior; hide extras */
 .hero.is-shrink{
   height: var(--banner-h);
   min-height: var(--banner-h);
   padding: 0 .75rem;
-  transform: none;
   border-radius: 0 0 12px 12px;
-  background-position: center top;
   box-shadow: 0 8px 20px rgba(0,0,0,.25);
-  filter: none;
-
-  /* switch layout from grid → flex for the banner row */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .75rem;
+  display: flex; align-items: center; justify-content: center; gap: .75rem;
 }
-
-.hero.is-shrink .hero-title{ font-size: clamp(1.1rem, 2.6vw, 1.6rem); margin: 0; line-height: 1.1; }
 .hero.is-shrink .sub,
 .hero.is-shrink .subtwo,
-.hero.is-shrink .ctas{ display:none }
-.hero.is-shrink .hero-portrait{ display: none; }
+.hero.is-shrink .ctas,
+.hero.is-shrink .hero-portrait{ display:none }
+.hero.is-shrink .hero-title{ font-size: clamp(1.1rem, 2.6vw, 1.6rem); margin:0; line-height:1.1 }
+
 
 
 
@@ -141,10 +155,11 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   .hero{
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
+    column-gap: 0;
   }
-  .hero h1, .hero .sub, .hero .cta{ grid-column: 1; grid-row: auto; }
-  .subtwo{ grid-column: 1; grid-row: auto; justify-self: center; text-align: center; margin-top: .5rem; }
-  .hero-portrait{ grid-column: 1; grid-row: auto; margin-top: 1rem; }
+  .hero .text{ grid-column:1; grid-row:1 }
+  .subtwo{ grid-column:1; grid-row:2; text-align:center; justify-self:center; margin-top:.5rem }
+  .hero-portrait{ grid-column:1; grid-row:3; margin-top:1rem }
 }
 
 
