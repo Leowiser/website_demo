@@ -197,8 +197,8 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 .panel img{
   width: auto;
   height: auto;
-  max-width: 80px;
-  max-height: 80px;
+  max-width: 200px;
+  max-height: 200px;
   object-fit: contain;   /* letterboxes if needed, no cropping */
   display: block;
 }
