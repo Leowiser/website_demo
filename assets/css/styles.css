@@ -9,6 +9,19 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 .links a{color:var(--muted);text-decoration:none;margin-left:1rem}
 .links a:hover{color:var(--text)}
 
+.grid{
+  display: grid;
+  /* gutter | content | gutter */
+  grid-template-columns:
+    minmax(var(--page-pad), 1fr)
+    minmax(0, var(--max))
+    minmax(var(--page-pad), 1fr);
+  column-gap: clamp(1rem, 3vw, 2rem);
+}
+
+/* place every direct child in the middle "content" column */
+.grid > *{ grid-column: 2; }
+
 .hero{
   position: sticky;
   top: 0;
