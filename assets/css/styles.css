@@ -163,8 +163,27 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   .hero-portrait{ grid-column:1; grid-row:3; margin-top:1rem }
 }
 
+/* turn off sticky for this page's hero */
+.hero--static{
+  position: static;         /* not sticky */
+  top: auto;
+  min-height: auto;
+}
 
+/* ignore any JS-added shrink class */
+.hero--static.is-shrink{
+  height: auto;
+  min-height: auto;
+  padding: 3rem 1rem;       /* your normal padding */
+  display: grid;            /* keep your grid layout */
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* optional: if you also want the title/sub/ctas always visible as a block */
+.hero--static .hero-title{ /* keep your existing sizes */ }
 /* update the existing rule */
+
 .tabcard{
   max-width: var(--card-max);
   width: min(var(--card-max), calc(100% - 2rem)); /* keeps margins on small screens */
@@ -278,8 +297,8 @@ figure.figure-snug img{ margin: 0; }
 img.thumb-20{
       width:auto;
       height:auto;
-      max-width:80px;    /* change to 60px/100px as you like */
-      max-height:80px;
+      max-width:200px;    /* change to 60px/100px as you like */
+      max-height:200px;
       display:block;
       margin:0 auto;
     }
