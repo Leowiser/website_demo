@@ -270,7 +270,7 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 .tabcard{ position: relative; z-index: 0; }
 :root{
   /* tweak this to the largest width you want each image to occupy */
-  --img-max: 120px;        /* e.g. 240px, 320px, 400px */
+  --img-max: 240px;        /* e.g. 240px, 320px, 400px */
   --fig-gap: 1rem;         /* space between images */
 }
 
