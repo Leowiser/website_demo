@@ -356,8 +356,8 @@ figure.figure-snug img{ margin: 0; }
 img.thumb-20{
       width:auto;
       height:auto;
-      max-width:200px;    /* change to 60px/100px as you like */
-      max-height:200px;
+      max-width:120px;    /* change to 60px/100px as you like */
+      max-height:120px;
       display:block;
       margin:0 auto;
     }
