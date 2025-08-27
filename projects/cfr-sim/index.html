@@ -1,97 +1,112 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>CFR Routing Algorithm · Summary</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thesis Summary · Exploring Unsupervised Autoencoders for Early Disease Detection</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root{ --bg:#0b0c10; --text:#e8e8ea; --muted:#a7a7ad; --panel:#14161c; --accent:#59d; --max:950px; }
-    html,body{margin:0}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-    .wrap{max-width:var(--max);margin:2.25rem auto;padding:0 1rem}
-    header{margin-bottom:1rem}
-    h1{font-size:clamp(1.6rem,3.8vw,2.2rem);line-height:1.1;margin:0}
-    .lead{color:var(--muted);margin:.35rem 0 0}
-    .grid{display:grid;gap:1rem}
-    @media(min-width:880px){ .grid{grid-template-columns:1.2fr .8fr} }
-    section.panel{background:var(--panel);border-radius:16px;padding:1rem 1.2rem}
-    h2{font-size:1.1rem;margin:.25rem 0 .4rem}
-    ul{margin:.25rem 0 0 1.1rem}
-    li{margin:.25rem 0}
-    .muted{color:var(--muted)}
-    .kbd{font-weight:700}
-    figure{margin:0;background:#0f1117;border:1px solid #1c1f27;border-radius:12px;overflow:hidden}
-    figure img{width:100%;height:220px;object-fit:cover;display:block}
-    figcaption{font-size:.9rem;color:var(--muted);padding:.5rem .75rem}
-    .cta{display:inline-block;margin-top:.75rem;text-decoration:none;color:#000;background:var(--accent);padding:.6rem .9rem;border-radius:999px;font-weight:700}
-    footer{margin-top:1rem;font-size:.9rem;color:var(--muted)}
-  </style>
+  <link rel="stylesheet" href="../../assets/css/styles.css" />
+
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>CFR Routing Algorithm — Summary</h1>
-      <p class="lead">Simulating which community first responders (CFRs) should go directly to the patient and who should fetch an AED, to maximize immediate survival in OHCA. :contentReference[oaicite:0]{index=0}</p>
-    </header>
+
+<nav class="nav">
+  <a class="brand" href="../../">Leon Weiser</a>
+  <div class="links">
+    <a href="../../#panel-about">About</a>
+    <a href="../../#panel-posts">Posts</a>
+    <a href="../../#panel-projects">Projects</a>
+    <a href="https://github.com/Leowiser">GitHub</a>
+  </div>
+</nav>
+
+<section class="hero hero-static">
+  <div class="text">
+    <h1 class="hero-title">Community First Responder Routing Algorithm</h1>
+    <p class="sub">Simulating which community first responders (CFRs) should go directly to the patient and who should fetch an AED, to maximize immediate survival in OHCA.</p>
+    <div class="ctas">
+      <a class="cta" href="https://github.com/Leowiser/AED-Route-Optimization-MDA-Project">Code found on GitHub here.</a>
+    </div>
+  </div>
+</section>
 
     <div class="grid">
       <!-- TEXT -->
       <section class="panel">
         <h2>Dispatch & Candidate Sets</h2>
         <ul>
-          <li>Build 10-min walking-distance <em>isochrones</em> around the patient; CFRs inside are alert-eligible. AEDs inside the patient isochrone are pickup-eligible. A CFR may fetch an AED only if located inside <em>both</em> isochrones. :contentReference[oaicite:1]{index=1}</li>
-          <li>Account for availability: each CFR has a <em>decline probability</em> (≈76% day, 64% evening, 88% night); only accepters remain as candidates. :contentReference[oaicite:2]{index=2}</li>
-          <li>From accepters, take the 100 or 150 closest (straight-line) CFRs as the final pool. Exactly one is sent <span class="kbd">direct</span> to start CPR and one is sent <span class="kbd">via AED</span>. :contentReference[oaicite:3]{index=3}</li>
+          <li>Build 10-min driving-distance <em>isochrones</em> around the patient: If ambulance inside continue with finding CFRs</li>
+          <li>Build 10-min walking-distance <em>isochrones</em> around the patient; CFRs inside are alert-eligible. AEDs inside the patient isochrone are pickup-eligible. A CFR may fetch an AED only if located inside <em>both</em> isochrones.</li>
+          <li>Account for availability: each CFR has a <em>decline probability</em> (≈76% day, 64% evening, 88% night); only accepters remain as candidates.</li>
+          <li>From accepters, take the 100 or 150 closest (straight-line) CFRs as the final pool. Exactly one is sent <span class="kbd">direct</span> to start CPR and one is sent <span class="kbd">via AED</span>.</li>
         </ul>
+        <div class="fig-row">
+          <figure class="figure-snug">
+            <img class="thumb-20" src="../../assets/img/cfr/Isochrones.png" alt="Isochrones">
+            <figcaption>10-min Isochrones driving and walking distance around the patient.</figcaption>
+          </figure>
+          <figure class="figure-snug">
+            <img class="thumb-20" src="../../assets/img/cfr/Approval.png" alt="CFR Acceptance">
+            <figcaption>Accepting CFRs.</figcaption>
+          </figure>
+        </div>
 
         <h2>Objective (Survival Function)</h2>
         <ul>
           <li>Survival (until first defibrillation possible) is modeled as
             <span class="kbd">P = 0.9<sup>t<sub>CFR</sub></sup> · 0.97<sup>t<sub>CPR</sub></sup></span>,
-            where <span class="kbd">t<sub>CFR</sub></span> is time from arrest to start of CPR and <span class="kbd">t<sub>CPR</sub></span> is CPR duration before defibrillation. :contentReference[oaicite:4]{index=4}
+            where <span class="kbd">t<sub>CFR</sub></span> is time from cardiac arrest to start of CPR and <span class="kbd">t<sub>CPR</sub></span> is CPR duration before defibrillation.
           </li>
-          <li>Defibrillation time is the earliest of: (i) CFR arriving with AED, or (ii) ambulance (“vector”) arriving with AED. :contentReference[oaicite:5]{index=5}</li>
+          <li>Defibrillation time is the earliest of: (i) CFR arriving with AED, or (ii) ambulance (“vector”) arriving with AED.</li>
         </ul>
 
         <h2>Assignment Logic</h2>
         <ul>
-          <li>If the fastest <span class="kbd">direct</span> CFR and fastest <span class="kbd">via-AED</span> CFR are different, use them as is. :contentReference[oaicite:6]{index=6}</li>
+          <li>If the fastest <span class="kbd">direct</span> CFR and fastest <span class="kbd">via-AED</span> CFR are different, use them as is.</li>
           <li>If the same CFR is fastest for both roles, compare three scenarios and pick the one with the highest <span class="kbd">P</span>:
             <ol style="margin:.25rem 0 0 1.1rem">
               <li>Fastest goes <span class="kbd">direct</span>, 2nd fastest fetches AED.</li>
               <li>Fastest fetches AED, 2nd fastest goes <span class="kbd">direct</span>.</li>
-              <li>Fastest alone fetches AED (if optimal). :contentReference[oaicite:7]{index=7}</li>
+              <li>Fastest alone fetches AED (if optimal).</li>
             </ol>
           </li>
-          <li>Walking speeds approximate brisk walking (not running) to reflect building exit/navigation and to avoid degrading CPR quality. :contentReference[oaicite:8]{index=8}</li>
-          <li>Each scenario is simulated multiple times to reduce randomness from CFR placement. :contentReference[oaicite:9]{index=9}</li>
+          <li>Walking speeds approximate brisk walking (not running) to reflect building exit/navigation and to avoid degrading CPR quality.</li>
+          <li>Each scenario is simulated multiple times to reduce randomness from CFR placement.</li>
         </ul>
 
         <h2>Noted Limitation & Fix</h2>
         <ul>
-          <li>When modeling AEDs as 24/7 accessible, survival sometimes <em>declines</em> because the optimizer may favor AED detours even when an ambulance is due quickly. The fix is to incorporate the ambulance ETA directly into the assignment objective (or penalize AED detours when ambulance arrival is imminent). :contentReference[oaicite:10]{index=10}</li>
+          <li>When modeling AEDs as 24/7 accessible, survival sometimes <em>declines</em> because the optimizer may favor AED detours even when an ambulance is due quickly. The fix is to incorporate the ambulance ETA directly into the assignment objective (or penalize AED detours when ambulance arrival is imminent).</li>
         </ul>
 
-        <a class="cta" href="../../Statistical_Consulting-1.pdf">Read full report (PDF)</a>
-        <p class="muted" style="margin-top:.3rem">Update the link above if the PDF lives elsewhere in your repo.</p>
+        <h2>Results</h2>
+        <ul>
+          <li>Increase in survival rate flattens out around 1&percnt; CFRs.</li>
+          <li>Highest survival rate at 8pm > 8am > 2pm > 2am.</li>
+          <li>More CFRs arrive faster during the evening CFRs are in the residential neighbourhood Low decline rate.</li>
+          <li>Prioritize direct routing to the Patient.</li>
+        </ul>
+        <div class="fig-row">
+          <figure class="figure-snug">
+            <img class="thumb-20" src="../../assets/img/cfr/SurvivalRate.png" alt="Survivalrate">
+            <figcaption>Survivalrate depending on proportion of CFRs in population at different times.</figcaption>
+          </figure>
+          <figure class="figure-snug">
+            <img class="thumb-20" src="../../assets/img/cfr/0.5NormalAED.png" alt="Normal AED 0.5%">
+            <figcaption>Amount of times CFRs arrive faster than Vector given 0.5&percnt; are CFRs</figcaption>
+          </figure>
+          <figure class="figure-snug">
+            <img class="thumb-20" src="../../assets/img/cfr/2.5NormalAED.png" alt="Normal AED 0.5%">
+            <figcaption>Amount of times CFRs arrive faster than Vector given 2.5&percnt; are CFRs</figcaption>
+          </figure>
+          <figure class="figure-snug">
+            <img class="thumb-20" src="../../assets/img/cfr/Overview.png" alt="Overview of the system">
+            <figcaption>Shows a heatmap with bigger circles depending on usage. AED in green, CFRs in blue and routes in red.</figcaption>
+          </figure>
+        </div>
+
       </section>
 
-      <!-- IMAGE PLACEHOLDERS -->
-      <aside class="panel">
-        <figure>
-          <img src="../../assets/img/cfr/isochrones.jpg" alt="Isochrones around patient and AEDs">
-          <figcaption>Drop-in: patient/AED isochrones with CFR candidates.</figcaption>
-        </figure>
-        <figure style="margin-top:1rem">
-          <img src="../../assets/img/cfr/routes.jpg" alt="Direct vs AED pickup routes">
-          <figcaption>Drop-in: direct vs via-AED route comparison (fastest responders).</figcaption>
-        </figure>
-        <figure style="margin-top:1rem">
-          <img src="../../assets/img/cfr/heatmap.jpg" alt="Frequent routes / AED usage heat map">
-          <figcaption>Drop-in: frequent routes / AED usage heat map.</figcaption>
-        </figure>
-      </aside>
     </div>
 
     <footer>© <span id="year"></span> Leon Weiser</footer>
