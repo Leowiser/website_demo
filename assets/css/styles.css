@@ -270,38 +270,10 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 .tabcard{ position: relative; z-index: 0; }
 :root{
   /* tweak this to the largest width you want each image to occupy */
-  --img-max: 240px;        /* e.g. 240px, 320px, 400px */
+  --img-max: 320px;        /* e.g. 240px, 320px, 400px */
   --fig-gap: 1rem;         /* space between images */
 }
 
-/* Row that lays figures left-to-right and wraps */
-.fig-row{
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--fig-gap);
-  align-items: flex-start;
-  justify-content: flex-start; /* keep left-aligned */
-}
-
-/* Each figure hugs its image; nothing is centered */
-figure.figure-snug{
-  margin: 0;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;  /* left-align caption */
-}
-
-
-
-/* Caption never wider than the image */
-figure.figure-snug figcaption{
-  max-width: var(--img-max);
-  margin-top: .4rem;
-  font-size: .9rem;
-  color: var(--muted);
-  line-height: 1.4;
-  overflow-wrap: anywhere;  /* guard long words/URLs */
-}
 
 /* Utility: cap image to 40×40 without cropping, keep aspect ratio */
 img.fit-20 {
@@ -313,14 +285,7 @@ img.fit-20 {
   margin: 0 auto;      /* remove if you don't want centering */
 }
 
-/* Row for multiple figures: goes in one line, wraps when needed */
-.fig-row{
-  display: flex;
-  flex-wrap: wrap;
-  gap: .75rem;                 /* space between figure boxes */
-  align-items: flex-start;
-  justify-content: flex-start; /* keep left-aligned */
-}
+
 
 
 
