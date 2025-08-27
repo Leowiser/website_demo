@@ -422,3 +422,48 @@ table.cv{
 .cv :is(td,th):nth-child(3){
   padding-left: 1rem;
 }
+
+
+/* === tidy overrides (append at end of the file) === */
+
+/* Make hero use the same side gutters as the page */
+.hero{ padding: 3rem var(--page-pad); }
+
+/* Single source of truth for figure rows */
+.fig-row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fig-gap);
+  align-items: flex-start;
+  justify-content: flex-start; /* left aligned */
+}
+
+/* Figure hugs its image, caption left-aligned */
+figure.figure-snug{
+  margin: 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Caption never wider than the image */
+figure.figure-snug figcaption{
+  max-width: var(--img-max);
+  margin-top: .4rem;
+  font-size: .9rem;
+  color: var(--muted);
+  line-height: 1.4;
+  text-align: left;           /* ensure no leftover centering */
+  overflow-wrap: anywhere;
+}
+
+/* Universal image cap inside content panels */
+.panel figure img{
+  width: auto;
+  height: auto;
+  max-width: var(--img-max);
+  max-height: var(--img-max);
+  object-fit: contain;
+  display: block;
+  margin: 0;
+}
