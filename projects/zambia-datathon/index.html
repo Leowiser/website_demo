@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZAMBIA · Zenith AI for Mapping & Browsing International Agreements on Climate Action</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+  <!-- Reuse your site-wide stylesheet if available -->
+  <link rel="stylesheet" href="../../assets/css/styles.css" />
+ 
+</head>
+<body>
+
+<nav class="nav">
+  <a class="brand" href="../../">Leon Weiser</a>
+  <div class="links">
+    <a href="../../#panel-about">About</a>
+    <a href="../../#panel-posts">Posts</a>
+    <a href="../../#panel-projects">Projects</a>
+    <a href="https://github.com/Leowiser">GitHub</a>
+  </div>
+</nav>
+
+<section class="hero hero-static">
+  <div class="text">
+    <h1 class="hero-title">ZAMBIA — Zenith AI for Mapping & Browsing International Agreements on Climate Action</h1>
+    <p class="sub">Harvesting the power of AI to bring more clarity around national climate strategies and policies.</p>
+    <div class="ctas">
+      <a class="cta" href="https://zambia.scaraz.dev/">Open the App</a>
+      <a class="cta" href="https://github.com/Leowiser/Zambia_Climate/tree/main">GitHub Repository</a>
+    </div>
+  </div>
+</section>
+
+<div class="grid">
+  <section class="panel">
+    <h2>Core Idea</h2>
+    <ul>
+      <li>Browse and summarize national climate policy documents (often PDFs) and compare countries on key topics.</li>
+      <li>Rely on Retrieval‑Augmented Generation (RAG) to ground answers in the underlying documents.</li>
+      <li>Provide concise, comparable outputs so policymakers and researchers can see similarities and differences quickly.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Tech Stack</h2>
+    <ul>
+      <li><strong>RAG</strong>: hybrid retrieval over national strategy PDFs.</li>
+      <li><strong>Models</strong>: DeepSeek‑R1‑7B, Llama‑3.2‑1B; aggregation with Perplexity API where helpful.</li>
+      <li><strong>UI</strong>: topic‑wise exploration and country comparisons with similarity indicators.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Strategy to Bring Clarity</h2>
+    <ul>
+      <li>Create prompts for each <em>topic</em> and each <em>country</em>.</li>
+      <li>Show similarity of found policies per topic.</li>
+      <li>Enable side‑by‑side country comparisons on selected topics.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Prompt Templates — Summaries</h2>
+    <ul>
+      <li><strong>Energy mix</strong>: <code>Which renewable energy sources are planned to be the main contributors to the energy mix of {country}? What are their percentages and target year?</code></li>
+      <li><strong>Carbon tax</strong>: <code>Is {country} implementing or considering a carbon tax? If yes, what are the details?</code></li>
+      <li><strong>Energy subsidy</strong>: <code>Is {country} subsidizing certain forms of energy? If yes, which ones and how?</code></li>
+      <li><strong>Green energy</strong>: <code>Which green energies are {country} considering for the transition to net‑zero? Provide details.</code></li>
+      <li><strong>Carbon capture</strong>: <code>Is {country} considering or already using carbon capture? Provide details.</code></li>
+      <li><strong>Private renewable investment</strong>: <code>How much private investment is {country} relying on to achieve climate targets? Provide details.</code></li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Prompt Template — Comparison</h2>
+    <p>Given two summaries, produce a ≤100‑word comparison in English:</p>
+    <pre><code>Compare {country1} and {country2} on their {selected_topic} policy based on:
+- {country1}'s {selected_topic} policy: {summary1}
+- {country2}'s {selected_topic} policy: {summary2}
+What are the key differences and similarities?</code></pre>
+  </section>
+
+  <section class="panel">
+    <h2>Data Sources</h2>
+    <ul>
+      <li>National strategies and policy documents in PDF format ingested into the RAG pipeline.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Try It</h2>
+    <ul>
+      <li><a href="https://zambia.scaraz.dev/">zambia.scaraz.dev</a></li>
+      <li><a href="https://github.com/Leowiser/Zambia_Climate/tree/main">github.com/Leowiser/Zambia_Climate</a></li>
+      <li>Note: the repository is private due to sensitive data; access available on request.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Credits</h2>
+    <p>Azka Aditama · Ebba Blomdahl · Dillon Hughes · Himanshu Sharma · Leon Weiser</p>
+  </section>
+</div>
+
+<footer>
+  © <span id="year"></span> Leon Weiser
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
