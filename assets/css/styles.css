@@ -432,3 +432,16 @@ figure.figure-snug figcaption{
   display: block;
   margin: 0;
 }
+
+:root{
+  --base: 18px;            /* change this one value to scale everything */
+  --h1-max: 4.4rem;
+}
+
+html { font-size: var(--base); }
+body { font-size: 1rem; }  /* equals --base */
+
+.hero h1 { font-size: clamp(2.2rem, 6.5vw, var(--h1-max)); }
+.sub     { font-size: 1.05rem; }
+.subtwo  { font-size: 1.0rem; }
+.card h2 { font-size: 1.2rem; }     /* was 1.15rem */
