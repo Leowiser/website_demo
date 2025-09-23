@@ -161,15 +161,24 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 .hero.is-shrink .hero-title{ font-size: clamp(1.1rem, 2.6vw, 1.6rem); margin:0; line-height:1.1 }
 
 
-.eyebrow{
-  margin: 0 0 .35rem;
-  font-size: .78rem;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  opacity: .95;
+.topics{
+  display:flex; flex-wrap:wrap; gap:.4rem;
+  margin: 0 0 .45rem;
 }
-.card-title{ margin: .15rem 0 .5rem; }
+.topic{
+  font-size:.75rem; font-weight:600;
+  padding:.28rem .6rem;
+  border-radius: 999px;
+  color: var(--accent);
+  background: rgba(85,153,221,.15);              /* subtle pill on dark bg */
+  border: 1px solid rgba(85,153,221,.35);        /* matches --accent #59d */
+  line-height: 1;
+  white-space: nowrap;
+}
+.card:hover .topic{
+  background: rgba(85,153,221,.22);
+  border-color: rgba(85,153,221,.55);
+}
 
 
 @media (max-width: 720px){
@@ -454,3 +463,4 @@ body { font-size: 1rem; }  /* equals --base */
 .subtwo  { font-size: 1.0rem; }
 
 .card h2 { font-size: 1.2rem; }     /* was 1.15rem */
+
