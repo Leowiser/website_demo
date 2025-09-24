@@ -180,15 +180,15 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   border-color: rgba(85,153,221,.55);
 }
 
-.topic[data-c="cv"] { color:#9adcff; border-color:#9adcff44; background:#9adcff22; }
-.topic[data-c="hsi"]{ color:#9AB8FF; border-color:#9AB8FF; background:#9AB8FF; }
-.topic[data-c="ae"] { color:#A79AFF; border-color:#A79AFF; background:#A79AFF; }
-.topic[data-c="nlp"] { color:#c6e58f; border-color:#c6e58f; background:#c6e58f; }
-.topic[data-c="rag"]{ color:#8FE590; border-color:#8FE590; background:#8FE590; }
-.topic[data-c="cp"] { color:#B3FFE1; border-color:#B3FFE1; background:#B3FFE1; }
-.topic[data-c="geo"] { color:#FFBEB3; border-color:#FFBEB3; background:#FFBEB3; }
-.topic[data-c="sim"]{ color:#FFD1B3; border-color:#FFD1B3; background:#FFD1B3; }
-.topic[data-c="sm"] { color:#FFE2B3; border-color:#FFE2B3; background:#FFE2B3; }
+.topic[data-c="cv"] { color:#9adcff; border-color:#9adcff44; background:#5599DD; }
+.topic[data-c="hsi"]{ color:#9AB8FF; border-color:#9AB8FF; background:#5599DD; }
+.topic[data-c="ae"] { color:#A79AFF; border-color:#A79AFF; background:#5599DD; }
+.topic[data-c="nlp"] { color:#c6e58f; border-color:#c6e58f; background:#5599DD; }
+.topic[data-c="rag"]{ color:#8FE590; border-color:#8FE590; background:#5599DD; }
+.topic[data-c="cp"] { color:#B3FFE1; border-color:#B3FFE1; background:#5599DD; }
+.topic[data-c="geo"] { color:#FFBEB3; border-color:#FFBEB3; background:#5599DD; }
+.topic[data-c="sim"]{ color:#FFD1B3; border-color:#FFD1B3; background:#5599DD; }
+.topic[data-c="sm"] { color:#FFE2B3; border-color:#FFE2B3; background:#5599DD; }
 
 
 @media (max-width: 720px){
@@ -473,6 +473,7 @@ body { font-size: 1rem; }  /* equals --base */
 .subtwo  { font-size: 1.0rem; }
 
 .card h2 { font-size: 1.2rem; }     /* was 1.15rem */
+
 
 
 
