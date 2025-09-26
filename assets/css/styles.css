@@ -385,33 +385,37 @@ img.thumb-20{
 .cv-section{
   margin-top: 1.75rem;
   padding-top: 1.25rem;
-  border-top: 1px solid rgba(255,255,255,.14); /* adjust color for light mode if needed */
+  border-top: 1px solid rgba(255,255,255,.14);
 }
-.cv-section:first-child{ border-top: 0; } /* no line before the very first section */
+.cv-section:first-child{ border-top: 0; }
 
-/* Table styling + vertical divider */
-table.cv{ 
-  width:100%;
-  border-collapse: separate;   /* don't collapse the borders */
+/* Table base + shared column sizing */
+table.cv{
+  width: 100%;
+  border-collapse: separate;    /* keep cells separate so the vertical rule shows */
   border-spacing: 0;
 }
+.cv-left { width: 14rem; }      /* <- pick a width that fits your longest date/label */
+.cv-sep  { width: 18px; }       /* fixed gutter for the vertical rule */
+.cv-right{ width: auto; }
 
-/* date column */
-.cv :is(td,th):first-child{
+/* Cells */
+.cv td, .cv th { vertical-align: top; }
+
+/* First column (dates / labels) */
+.cv td:first-child, .cv th:first-child{
   white-space: nowrap;
   padding-right: 1rem;
 }
 
-/* spacer column = vertical line */
-.cv :is(td,th):nth-child(2){
-  width: 18px;
-  min-width: 18px;             /* stop it collapsing to 0 */
+/* Middle column becomes the vertical line */
+.cv td:nth-child(2), .cv th:nth-child(2){
   padding: 0;
   border-left: 2px solid rgba(255,255,255,.14);
 }
 
-/* content column */
-.cv :is(td,th):nth-child(3){
+/* Content column */
+.cv td:nth-child(3), .cv th:nth-child(3){
   padding-left: 1rem;
 }
 
